@@ -37,6 +37,18 @@ class Sheet:
             if (self.sheet[line] > 0).sum() == 0:
                 return True
 
+    def get_winners(self):
+        leader_board = []
+        for line in range(5):
+            # check each column
+            if (self.sheet[:, line] > 0).sum() == 0:
+                leader_board.append(self.index)
+                winning_
+
+            # check each row
+            if (self.sheet[line] > 0).sum() == 0:
+                return True
+
     def sum(self):
         return self.sheet[self.sheet > 0].sum()
 

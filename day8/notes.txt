@@ -1,0 +1,49 @@
+# GET A
+"""compare the smalled length number, which is 1, wth second smalled length number, which is 2. 
+Get the letter that is different between them. That letter is the letter a """
+decoder['a'] = list(set(seven) - set(one))[0]
+
+# GET C
+"""The numbers 0, 6 and 9 have letter combinations of length 6. We know the letters that make up 1, which are c and f. 
+9 and 0 have c and f, but 6 only has f. If we subtract the set of 0 or 9 from the set of 1, we should get 4 remaining 
+letters (the letter they do not have in common). If we subtract the set of 6 from the set of 1, we should get 5 
+remaining letters, whihc revel to us which letter combinations make up 6. Once we know which letter combinations are 6
+we can subtract the set of one from the set of 6 to get the value for 'c'.
+# the missing letter will be 'c' """
+
+for number in sixes:
+    if len(set(number)-set(one)) == 5:
+        decoder['c'] = list(set(one).difference(number))[0]
+        # decoder['c'] = list(set(number).intersection(set(one)))[0]
+        six = number
+        sixes.remove(number)
+        
+"""The number 4 is missing 2 letters from nine and 3 letters from zero. We can use this knowledge to distinguish 
+between 9 and 0."""
+for number in sixes:
+    if len(set(number)-set(four)) == 3:
+        zero = number
+    else:
+        nine = number
+        
+# GET F
+"""Since we now know six, we can find f because one and six share only f in common"""
+decoder['f'] = list(set(one).intersection(six))[0]
+
+# GET D
+"""Since we now know zero, we can get letter 'd' by finding the letter that differs between zero and eight."""
+decoder['d'] = list(set(eight).difference(zero))[0]
+
+# GET E
+"""Since we now know nine we can get letter 'e' by finding the letter that differs between nine and eight."""
+decoder['e'] = list(set(eight).difference(nine))[0]
+
+# GET B
+"""We only have 2 letters left: b and g. We know that four has b, but not g and we already know all of the 
+letters in four: b,c,d,f. We can find b by finding the letter that differs between four and the values that 
+we have discovered so far."""
+decoder['b'] = list(set(four).difference(decoder.values()))[0]
+
+# GET G
+"""We know that letter g is the only value not in out list"""
+decoder['g'] = list(set(decoder.keys()).difference(decoder.values()))[0]
